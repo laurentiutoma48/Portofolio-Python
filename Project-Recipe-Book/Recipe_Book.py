@@ -12,9 +12,10 @@ while 1:
     ingredients_list.append(question2.lower())
 
 
-
+found=False;
 for recipe in recipes:
     if any(ingredient["item"].lower() in ingredients_list for ingredient in recipe["mainIngredients"]):
+        found=True;
         print(recipe["name"]+"\n\n")
         print("Ingredients:\n")
         for ingredient in recipe["mainIngredients"]:
@@ -28,11 +29,11 @@ for recipe in recipes:
         print("\nNutrition details per 100g: \n")
         for key,value in recipe["nutrition"].items():
             print(key+": "+value)
-else:
+if not found:
     print("There is either no recipe with the ingredients you typed or there are some diferences between your typing and the code.")
     print("The main ingredients available are:")
     allIngredients=[];
     for recipe in recipes:
         for ingredient in recipe["mainIngredients"]:
             allIngredients.append(ingredient["item"])
-    print(allIngredients)              
+print(allIngredients)              
